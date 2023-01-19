@@ -2,24 +2,24 @@
 
 //基本设置--------------------------------------------------------------------------------------------
 $_ENV['key']        = 'ChangeMe';                     //请务必修改此key为随机字符串
-$_ENV['pwdMethod']  = 'bcrypt';                          //密码加密 可选 md5, sha256, bcrypt, argon2i, argon2id（argon2i需要至少php7.2）
-$_ENV['salt']       = '';                             //推荐配合 md5/sha256， bcrypt/argon2i/argon2id 会忽略此项
+$_ENV['pwdMethod']  = 'md5';                          //密码加密 可选 md5, sha256, bcrypt, argon2i, argon2id（argon2i需要至少php7.2）
+$_ENV['salt']       = 'sha256';                             //推荐配合 md5/sha256， bcrypt/argon2i/argon2id 会忽略此项
 
 $_ENV['debug']      = false;                          //debug模式开关，生产环境请保持为false
-$_ENV['appName']    = 'SSPanel-UIM';                  //站点名称
-$_ENV['baseUrl']    = 'https://example.com';          //站点地址
-$_ENV['muKey']      = 'SSPanel';                      //WebAPI密钥，用于节点服务端与面板通信
+$_ENV['appName']    = getenv('WEB_TITLE');                  //站点名称
+$_ENV['baseUrl']    = getenv('WEB_URL');          //站点地址
+$_ENV['muKey']      = getenv('WEB_API');                      //WebAPI密钥，用于节点服务端与面板通信
 
 //数据库设置--------------------------------------------------------------------------------------------
 // db_host|db_socket 二选一，若设置 db_socket 则 db_host 会被忽略，不用请留空。若数据库在本机上推荐用 db_socket。
 // db_host 例: localhost（可解析的主机名）, 127.0.0.1（IP 地址）, 10.0.0.2:4406（含端口)
 // db_socket 例：/var/run/mysqld/mysqld.sock（需使用绝对地址）
 $_ENV['db_driver']    = 'mysql';
-$_ENV['db_host']      = '';
+$_ENV['db_host']      = getenv('DB_HOST');
 $_ENV['db_socket']    = '';
-$_ENV['db_database']  = 'sspanel';           //数据库名
-$_ENV['db_username']  = 'root';              //数据库用户名
-$_ENV['db_password']  = 'sspanel';           //用户名对应的密码
+$_ENV['db_database']  = getenv('DB_DATABASE');           //数据库名
+$_ENV['db_username']  = getenv('DB_USERNAME');              //数据库用户名
+$_ENV['db_password']  = getenv('DB_PASSWORD');           //用户名对应的密码
 #高级
 $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';
